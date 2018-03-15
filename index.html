@@ -18,32 +18,37 @@
         </form>
     </div>
 
+    <div id="results-view"></div>
+
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-
     var appID = "4ec507ba";
     var appKey = "0d8ac99d68001bbf83dd4977921bfef9";
 
-    function search(query){
+    function search(query) {
         var queryURL = "https://api.edamam.com/search?" + "&app_id=" + appID + "&app_key=" + appKey + "&q=" + query;
 
         $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
+                url: queryURL,
+                method: "GET"
+            })
 
-        .then(function(response) {
-            console.log(response);
-            var results = response.hits;
-            for (var i = 0 ; i < results.length ; i++){
-                var recipe = results[i].recipe;
-                Object.keys(recipe).forEach(function(key){
-                    console.log(key);
-                })
-            }
-        });
+            .then(function (response) {
+                    var results = response.hits;
+                    for (var i = 0; i < results.length; i++) {
+                        var recipe = results[i].recipe;
+                        Object.keys(recipe).forEach(function (key) {
+                            //console.log(recipe[key]);
+                            var div = $("<div>");
+                            div.text(key + " - " + recipe[key]);
+                            $("#results-view").append(div);
+
+                        });
+
+                    }
+            });
     }
 
     $("#search-button").on("click", function () {
@@ -52,7 +57,6 @@
 
         var searchValue = $("#search-input").val().trim();
         if (searchValue !== "") {
-            console.log(searchValue);
             search(searchValue);
         }
 
