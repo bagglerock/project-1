@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue-Bold;\f2\fnil\fcharset0 HelveticaNeue;
+\f3\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red210\green0\blue53;
+\red245\green245\blue247;\red242\green242\blue242;\red0\green0\blue0;\red213\green213\blue213;}
+{\*\expandedcolortbl;;\cssrgb\c20000\c20000\c20000;\cssrgb\c100000\c100000\c100000;\cssrgb\c86667\c6667\c26667;
+\cssrgb\c96863\c96863\c97647;\cssrgb\c96078\c96078\c96078;\cssrgb\c0\c0\c0;\cssrgb\c86667\c86667\c86667;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Food 2 Fork : \
+\
+{\field{\*\fldinst{HYPERLINK "http://food2fork.com/about/api"}}{\fldrslt http://food2fork.com/about/api}}\
+\
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs35 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Documentation\cb1 \
+\pard\pardeftab720\sl320\sa400\partightenfactor0
+
+\f2\b0\fs28 \cf2 \
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs23\fsmilli11900 \cf2 \cb3 Submitting a Query\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 All search requests should be made to the base search API URL.
+\f3\fs24 \cf4 \cb5 \strokec4 http://food2fork.com/api/search\'a0
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\cb3 All recipe requests should be made to this URL:\'a0
+\f3\fs24 \cf4 \cb5 \strokec4 http://food2fork.com/api/get\'a0
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs23\fsmilli11900 \cf2 \cb3 Parameters\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 All parameters can be encoded as either HTTP GET or POST parameters.\cb1 \
+\pard\pardeftab720\sl340\partightenfactor0
+
+\b \cf2 \cb3 Search\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b0\fs26 \cf2 \cb6 key: API Key\
+q: (optional) Search Query (Ingredients should be separated by commas). If this is omitted top rated recipes will be returned.\
+sort: (optional) How the results should be sorted. See Below for details.\
+page: (optional) Used to get additional results\
+\pard\pardeftab720\sl340\partightenfactor0
+
+\f2\b\fs28 \cf2 \cb3 Get Recipe\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b0\fs26 \cf2 \cb6 key: API Key\
+rId: Id of desired recipe as returned by Search Query\
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs23\fsmilli11900 \cf2 \cb3 Search Sorting\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 The Food2Fork API offers two kinds of sorting for queries. The first is by rating. This rating is based off of social media scores to determine the best recipes.\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f3\fs24 \cf4 \cb5 \strokec4 sort=r
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sl320\partightenfactor0
+\cf2 \cb3 The second is by trendingness. The most recent recipes from our publishers have a trend score based on how quickly they are gaining popularity.\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f3\fs24 \cf4 \cb5 \strokec4 sort=t
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs23\fsmilli11900 \cf2 \cb3 Pages (Search Only)\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 Any request will return a maximum of 30 results. To get the next set of results send the same request again but with\'a0
+\f3\fs24 \cf4 \cb5 \strokec4 page = 2\'a0
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\cb3 The default if omitted is\'a0
+\f3\fs24 \cf4 \cb5 \strokec4 page = 1\'a0
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs23\fsmilli11900 \cf2 \cb3 Response Parameters\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 The response is json encoded.\'a0
+\b Search\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b0\fs26 \cf2 \cb6 count: Number of recipes in result (Max 30)\
+recipes: List of Recipe Parameters ->\
+	image_url: URL of the image\
+	source_url: Original Url of the recipe on the publisher's site\
+	f2f_url: Url of the recipe on Food2Fork.com\
+	title: Title of the recipe\
+	publisher: Name of the Publisher\
+	publisher_url: Base url of the publisher\
+	social_rank: The Social Ranking of the Recipe (As determined by our Ranking Algorithm)\
+	page: The page number that is being returned (To keep track of concurrent requests)\
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs23\fsmilli11900 \cf2 \cb3 Sample Response\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 Request:\'a0
+\f3\fs24 \cf4 \cb5 \strokec4 http://food2fork.com/api/search?key=\{API_KEY\}&q=shredded%20chicken
+\f2\fs28 \cf2 \cb1 \strokec2 \
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\fs26 \cf2 \cb6 \{\
+"count": 1, \
+"recipes": [\{\
+"publisher": "Allrecipes.com",\
+"social_rank": 99.81007979198002, \
+"f2f_url": "http://food2fork.com/F2F/recipes/view/29159", \
+"publisher_url": "http://allrecipes.com", \
+"title": "Slow-Cooker Chicken Tortilla Soup", \
+"source_url": "http://allrecipes.com/Recipe/Slow-Cooker-Chicken-Tortilla-Soup/Detail.aspx",\
+"page":1\}]\
+\}\
+\pard\pardeftab720\sl340\partightenfactor0
+
+\f2\b\fs28 \cf2 \cb3 Get Recipe\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b0\fs26 \cf2 \cb6 recipe: List of Recipe Parameters ->\
+	image_url: URL of the image\
+	source_url: Original Url of the recipe on the publisher's site\
+	f2f_url: Url of the recipe on Food2Fork.com\
+	title: Title of the recipe\
+	publisher: Name of the Publisher\
+	publisher_url: Base url of the publisher\
+	social_rank: The Social Ranking of the Recipe (As determined by our Ranking Algorithm)\
+	ingredients: The ingredients of this recipe\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\fs28 \cf2 \cb1 \
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs35 \cf2 \cb3 Commercial Usage\cb1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf2 \cb3 All paid API plans are free of commercial use restrictions.\'a0\cb1 \
+\cb3 Free API plans may be used in commercial services or products with attribution. This attribution must say "Powered By Food2Fork.com". If possible, it must also link to Food2Fork.com. With mobile Apps this link is not necessary.\'a0\cb1 \
+\
+\pard\pardeftab720\sl400\sa200\partightenfactor0
+
+\f1\b\fs35 \cf2 \cb3 Pricing\cb1 \
+\pard\pardeftab720\sl320\sa400\partightenfactor0
+
+\f2\b0\fs28 \cf2 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart180 \tamarb400 \trbrdrt\brdrs\brdrw20\brdrcf8 \trbrdrl\brdrnil \trbrdrr\brdrs\brdrw20\brdrcf8 
+\clvertalb \clshdrawnil \clwWidth2212\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2880
+\clvertalb \clshdrawnil \clwWidth4551\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx5760
+\clvertalb \clshdrawnil \clwWidth4135\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+
+\b\fs24 \cf7 \cb3 \strokec7 Plan\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 API Calls Per Day\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 Cost Per Month\cb1 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart180 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrs\brdrw20\brdrcf8 
+\clvertalt \clshdrawnil \clwWidth2232\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth4571\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4155\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+
+\b0 \cf7 \cb3 Free\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 500\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 $0\cb1 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart180 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrs\brdrw20\brdrcf8 
+\clvertalt \clshdrawnil \clwWidth2232\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth4571\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4155\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 Basic\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 2500\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 $50\cb1 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart180 \tamarb400 \trbrdrl\brdrnil \trbrdrr\brdrs\brdrw20\brdrcf8 
+\clvertalt \clshdrawnil \clwWidth2232\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth4571\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4155\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 Pro\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 10,000\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 $150\cb1 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart180 \tamarb400 \trbrdrl\brdrnil \trbrdrb\brdrs\brdrw20\brdrcf8 \trbrdrr\brdrs\brdrw20\brdrcf8 
+\clvertalt \clshdrawnil \clwWidth2232\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth4571\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4155\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt160 \clpadl160 \clpadb160 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 Ultimate\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 150,000\cb1 \cell 
+\pard\intbl\itap1\pardeftab720\sl400\partightenfactor0
+\cf7 \cb3 $750\cb1 \cell \lastrow\row
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf2 \strokec2 \
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API tests</title>
+</head>
+
+<body>
+
+    <div>
+        <form id="search-form">
+            <input type="text" id="search-input">
+            <input id="search-button" type="submit" value="Search">
+        </form>
+    </div>
+
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+    var appID = "4ec507ba";
+    var appKey = "0d8ac99d68001bbf83dd4977921bfef9";
+
+    function search(query){
+        var queryURL = "https://api.edamam.com/search?" + "&app_id=" + appID + "&app_key=" + appKey + "&q=" + query;
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+
+        .then(function(response) {
+            console.log(response);
+        });
+    }
+
+    $("#search-button").on("click", function () {
+
+        event.preventDefault();
+
+        var searchValue = $("#search-input").val().trim();
+        if (searchValue !== "") {
+            console.log(searchValue);
+            search(searchValue);
+        }
+
+        searchValue = $("search-input").val("");
+
+    })
+</script>
+
+</html>
