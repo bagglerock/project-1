@@ -13,10 +13,14 @@
 
     <div>
         <form id="search-form">
-            <input type="text" id="search-input">
-            <input id="search-button" type="submit" value="Search">
+            <input type="text" placeholder="Search..." id="search-input">
+            <input type="submit" value="Add Ingredient" id="add-ingredient">
+            <br>
+            <input type="submit" value="Search" id="search-button">
         </form>
     </div>
+
+    <div id="ingredients-view"></div>
 
     <div id="results-view"></div>
 
@@ -24,10 +28,57 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-    var appID = "4ec507ba";
-    var appKey = "0d8ac99d68001bbf83dd4977921bfef9";
+    var ingredients = [];
 
-    function search(query) {
+    function clearResults() {
+        $("#results-view").empty();
+    }
+
+    function addIngredients(ingredient) {
+
+        $("#ingredients-view").empty();
+
+        ingredients.push(ingredient);
+
+        for ( var i = 0 ; i < ingredients.length ; i++ ){
+            var ingredientContainer = $("<div>");
+            ingredientContainer
+            .text(ingredients[i]);
+            $("#ingredients-view").append(ingredientContainer);
+        }
+
+    }
+
+
+
+    function searchF2f(array) {
+        console.log("hi");
+        var apiKey = "041c5ecc290bbd100cb6e5c786e614b0";
+        var url = "http://food2fork.com/api/search";
+        var queryString = ""
+        for ( var i = 0 ; i < ingredients.length ; i ++ ){
+                    queryString += ingredients[i] + ","
+        }
+        url += "?" + $.param({
+            "key" : apiKey,
+            "q" : queryString
+
+        });
+
+        $.ajax({
+            url: url,
+            method: "GET"
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+
+    }
+
+
+    function searchEdamam(query) {
+        var appID = "4ec507ba";
+        var appKey = "0d8ac99d68001bbf83dd4977921bfef9";
         var queryURL = "https://api.edamam.com/search?" + "&app_id=" + appID + "&app_key=" + appKey + "&q=" + query;
 
         $.ajax({
@@ -36,33 +87,52 @@
             })
 
             .then(function (response) {
-                    var results = response.hits;
-                    for (var i = 0; i < results.length; i++) {
-                        var recipe = results[i].recipe;
-                        Object.keys(recipe).forEach(function (key) {
-                            //console.log(recipe[key]);
-                            var div = $("<div>");
-                            div.text(key + " - " + recipe[key]);
-                            $("#results-view").append(div);
+                clearResults();
+                var results = response.hits;
+                for (var i = 0; i < results.length; i++) {
+                    var recipe = results[i].recipe;
+                    Object.keys(recipe).forEach(function (key) {
+                        //console.log(recipe[key]);
+                        var div = $("<div>");
+                        div.text(key + " - " + recipe[key]);
+                        $("#results-view").append(div);
 
-                        });
+                    });
 
-                    }
+                }
             });
     }
 
+
+
     $("#search-button").on("click", function () {
 
-        event.preventDefault();
-
+        /*event.preventDefault();
         var searchValue = $("#search-input").val().trim();
         if (searchValue !== "") {
-            search(searchValue);
+            //searchEdamam(searchValue);
         }
+        searchValue = $("#search-input").val("");*/
+        event.preventDefault();
+        if (ingredients.length > 0){
+            searchF2f(ingredients);
 
-        searchValue = $("search-input").val("");
+        } else {
+            return false;
+        }
+    });
 
-    })
+
+    $("#add-ingredient").on("click", function () {
+
+        event.preventDefault();
+        var ingredient = $("#search-input").val().trim();
+        addIngredients(ingredient);
+        searchValue = $("#search-input").val("");
+
+    });
+
+
 </script>
 
 </html>
