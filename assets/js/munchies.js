@@ -23,7 +23,7 @@ function addIngredients(ingredient) {
 
 function searchF2f(array) {
     var apiKey = "041c5ecc290bbd100cb6e5c786e614b0";
-    var url = "https://food2fork.com/api/search";
+    var url = "https://food2fork.com/api/search.jsonp";
     var queryString = ""
     for (var i = 0; i < ingredients.length; i++) {
         queryString += ingredients[i] + ","
