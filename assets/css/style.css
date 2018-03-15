@@ -1,0 +1,13 @@
+.recipe-result {
+    width: 350px;
+    height: 400px;
+    margin: 20px;
+    float: left;
+
+
+}
+
+.recipe-image {
+    max-width: 350px;
+    max-height: 300px;
+}
