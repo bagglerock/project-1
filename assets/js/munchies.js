@@ -92,7 +92,6 @@ function searchEdamam(query) {
             var results = response.hits;
             for (var i = 0; i < results.length; i++) {
                 var recipe = results[i].recipe;
-                console.log(recipe);
                 var
                     link = recipe.url,
                     image = recipe.image,
