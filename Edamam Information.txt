@@ -1,0 +1,157 @@
+Edamam : 
+
+https://developer.edamam.com/edamam-docs-recipe-api
+
+    var appID = "4ec507ba";
+    var appKey = "0d8ac99d68001bbf83dd4977921bfef9";
+
+
+Search:
+
+Path: https://api.edamam.com/search
+
+The following parameters are part of the GET request URL:
+Parameter
+Required
+Type
+Description
+q
+yes*
+string
+Query text. For example q=chicken. This or the r parameter are required
+r
+yes*
+string
+Returns information about a specific recipe based on its ID ie. -r=http://www.edamam.com/ontologies/edamam.owl%23recipe_637913ec61d9da69eb451818c3293df2 This or the q parameter are required
+app_id
+yes
+string
+Your 3scale application ID
+app_key
+yes
+string
+Your 3scale application key
+from
+no
+integer
+First result index (default 0). Example: from=20
+to
+no
+integer
+Last result index (exclusive, default from + 10). Example: to=30
+ingr
+no
+integer
+Maximum number of ingredients. Example: ingr=5
+diet
+no
+enum
+Diet label: one of “balanced”, “high-protein”, “high-fiber”, “low-fat”, “low-carb”, “low-sodium”
+health
+no
+enum
+Health label: One of the Health api parameters listed in Diet and Health Labels table at the end of this documentation. For example “peanut-free”, “tree-nut-free”, “soy-free”, “fish-free”, “shellfish-free”
+calories
+no
+range
+Calories per serving. The format is “gte L, lte U”, where integers L and U are the lower and upper bound, respectively, for the desired calories range. Either bound can be omitted. Examples: “lte 600”, “gte 250”, “gte 250, lte 600”.
+nutrients[NTR]
+no
+range
+Range for a given nutrient. The format is nutrients[NTR]=RANGE where NTR is replaced by the nutrient code and RANGE is replaced by the value. More details and examples are contained in the ‘Search by nurient range’ section
+callback
+no
+string
+Callback parameter for JSONP. This will “envelop” the result in a JavaScript function call to the specified callback. Optional
+
+
+NTR Code
+Name
+Unit
+NTR Code
+Name
+Unit
+CA
+Calcium
+mg
+ENERC_KCAL
+Energy
+kcal
+CHOCDF
+Carbs
+g
+NIA
+Niacin (B3)
+mg
+CHOLE
+Cholesterol
+mg
+P
+Phosphorus
+mg
+FAMS
+Monounsaturated
+g
+PROCNT
+Protein
+g
+FAPU
+Polyunsaturated
+g
+RIBF
+Riboflavin (B2)
+mg
+FASAT
+Saturated
+g
+SUGAR
+Sugars
+g
+FAT
+Fat
+g
+THIA
+Thiamin (B1)
+mg
+FATRN
+Trans
+g
+TOCPHA
+Vitamin E
+mg
+FE
+Iron
+mg
+VITA_RAE
+Vitamin A
+æg
+FIBTG
+Fiber
+g
+VITB12
+Vitamin B12
+æg
+FOLDFE
+Folate (Equivalent)
+æg
+VITB6A
+Vitamin B6
+mg
+K
+Potassium
+mg
+VITC
+Vitamin C
+mg
+MG
+Magnesium
+mg
+VITD
+Vitamin D
+æg
+NA
+Sodium
+mg
+VITK1
+Vitamin K
+æg

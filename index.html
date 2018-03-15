@@ -14,7 +14,7 @@
     <div>
         <form id="search-form">
             <input type="text" placeholder="Search..." id="search-input">
-            <!-- <input type="submit" value="Add Ingredient" id="add-ingredient"> -->
+            <input type="submit" value="Add Ingredient" id="add-ingredient">
             <br>
             <input type="submit" value="Search" id="search-button">
         </form>
@@ -40,10 +40,10 @@
 
         ingredients.push(ingredient);
 
-        for ( var i = 0 ; i < ingredients.length ; i++ ){
+        for (var i = 0; i < ingredients.length; i++) {
             var ingredientContainer = $("<div>");
             ingredientContainer
-            .text(ingredients[i]);
+                .text(ingredients[i]);
             $("#ingredients-view").append(ingredientContainer);
         }
 
@@ -55,22 +55,22 @@
         var apiKey = "041c5ecc290bbd100cb6e5c786e614b0";
         var url = "https://food2fork.com/api/search";
         var queryString = ""
-        for ( var i = 0 ; i < ingredients.length ; i ++ ){
-                    queryString += ingredients[i] + ","
+        for (var i = 0; i < ingredients.length; i++) {
+            queryString += ingredients[i] + ","
         }
         url += "?" + $.param({
-            "key" : apiKey,
-            "q" : queryString
+            "key": apiKey,
+            "q": queryString
 
         });
 
         $.ajax({
-            url: url,
-            method: "GET"
-        })
-        .then(function (response) {
-            console.log(response);
-        })
+                url: url,
+                method: "GET"
+            })
+            .then(function (response) {
+                console.log(response);
+            })
 
     }
 
@@ -107,18 +107,20 @@
     $("#search-button").on("click", function () {
 
         event.preventDefault();
-        var searchValue = $("#search-input").val().trim();
-        if (searchValue !== "") {
-            searchEdamam(searchValue);
-        }
-        searchValue = $("#search-input").val("");
-        /*event.preventDefault();
-        if (ingredients.length > 0){
+        if (ingredients.length > 0) {
             searchF2f(ingredients);
 
         } else {
-            return false;
-        }*/
+            var searchValue = $("#search-input").val().trim();
+            if (searchValue !== "") {
+                searchEdamam(searchValue);
+            } else {
+                console.log("You didn't add any ingredients to search for nor did you put any search term.")
+            }
+
+        }
+
+        searchValue = $("#search-input").val("");
     });
 
 
@@ -130,8 +132,6 @@
         searchValue = $("#search-input").val("");
 
     });
-
-
 </script>
 
 </html>
