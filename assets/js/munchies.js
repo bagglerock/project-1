@@ -20,7 +20,7 @@ function addIngredients(ingredient) {
 }
 
 
-
+  
 function searchF2f(array) {
     var apiKey = "041c5ecc290bbd100cb6e5c786e614b0";
     var url = "https://food2fork.com/api/search.jsonp";
@@ -74,7 +74,7 @@ function searchF2f(array) {
             }
         })
 
-}
+    }
 
 
 function searchEdamam(query) {
@@ -124,7 +124,7 @@ function searchEdamam(query) {
         });
 }
 
-
+   
 
 $("#search-button").on("click", function () {
 
