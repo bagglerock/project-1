@@ -19,7 +19,7 @@ function addIngredients(ingredient) {
 
 }
 
-console.log("test");
+console.log("test2");
 
 
 function searchF2f(array) {
