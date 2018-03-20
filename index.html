@@ -73,10 +73,10 @@
 
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
-                    <!-- Create an id name area for Favorite -->
-                        <button="btnLogin" class="btn btn-action" id="area">Favorite</button>
-                        <button="btnLogin" class="btn btn-action" id="area">Missing ingrediants</button>
-                        
+                <!-- Create an id name area for Favorite -->
+                <button="btnLogin" class="btn btn-action" id="area">Favorite</button>
+                    <button="btnLogin" class="btn btn-action" id="area">Missing ingrediants</button>
+
             </form>
         </div>
         <!-- Button trigger modal -->
@@ -89,19 +89,24 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <button="btnLogin" class="btn btn-action">Sigin / Sign Up</button>
-                        <button="btnLogin" class="btn btn-action">Log out</button>
+                        <input id="txtEmail" type="email" placeholder="email">
+                        <input id="password" type="password" placeholder="Password">
+                        <br><br>
+
+                        <button id="btnLogin" class="btn btn-action">Signin</button>
+                        <button id="btnLogin" class="btn btn-action">Sign Up</button>
+                        <button id="btnLogOut" class="btn btn-action">Log out</button>
                     </div>
-                    <div class="modal-footer">
+                    <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Log In</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -114,9 +119,8 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type=“text/javascript” src=“https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js“></script>
 
-
-    <p>is this working?</p>
-    <p>yes this is working well!!</p>
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 
 
 </body>
