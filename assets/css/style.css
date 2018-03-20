@@ -1,13 +1,15 @@
-.recipe-result {
-    width: 350px;
-    height: 400px;
-    margin: 20px;
-    float: left;
+.wrapper {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+    grid-gap: 10px;
+    background-color: blue;
+}
 
-
+.wrapper > div {
+    background-color: lightblue;
+    text-align: center;
 }
 
 .recipe-image {
-    max-width: 350px;
-    max-height: 300px;
+    width: 200px;
 }
