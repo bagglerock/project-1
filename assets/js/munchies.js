@@ -233,19 +233,21 @@ function searchByTopic() {
     })
 }
 
+// firebase for the app muchies
+
 var config = {
-    apiKey: "AIzaSyDkAoXEQFDvkL9kms8l-YifJQjhf9H1bI4",
-    authDomain: "classactivities-dbec8.firebaseapp.com",
-    databaseURL: "https://classactivities-dbec8.firebaseio.com",
-    projectId: "classactivities-dbec8",
-    storageBucket: "classactivities-dbec8.appspot.com",
-    messagingSenderId: "791002863378"
+    apiKey: "AIzaSyAdaHZQH82uO9oxLw82nbPcpwnZxdD50Fg",
+    authDomain: "munchies-ff8b4.firebaseapp.com",
+    databaseURL: "https://munchies-ff8b4.firebaseio.com",
+    projectId: "munchies-ff8b4",
+    storageBucket: "",
+    messagingSenderId: "443385289339"
 };
 firebase.initializeApp(config);
 
 var database = firebase.database();
 
-var userId = ""; 
+var userId = "";
 var txtEmail = $("#txtEmail");
 var password = $("#password");
 var btnLogin = $("#btnLogin");
