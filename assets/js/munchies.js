@@ -1,19 +1,22 @@
 var ingredients = [];
 
 function clearResults() {
-  $("#results-view").empty();
+    $("#results-view").empty();
 }
 
 function addIngredients(ingredient) {
-  $("#ingredients-view").empty();
 
-  ingredients.push(ingredient);
+    $("#ingredients-view").empty();
 
-  for (var i = 0; i < ingredients.length; i++) {
-    var ingredientContainer = $("<div>");
-    ingredientContainer.text(ingredients[i]);
-    $("#ingredients-view").append(ingredientContainer);
-  }
+    ingredients.push(ingredient);
+
+    for (var i = 0; i < ingredients.length; i++) {
+        var ingredientContainer = $("<div>");
+        ingredientContainer
+            .text(ingredients[i]);
+        $("#ingredients-view").append(ingredientContainer);
+    }
+
 }
 
 //  Search by ingredient
@@ -142,9 +145,9 @@ function showResponse(arr) {
 function getRecipeById(id) {
   //  take in the id and return the recipe
   var apiKey = "NaJ8IatR4umshJBKw1RZRU7m6EnQp1QfWPajsnjxYr5FbYb8Gv";
-  var url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information";
+  var url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
   url +=
-    id + "?" +
+    id + "/information?" +
     $.param({
       includeNutrition: "true", //Include nutrition data to the recipe information. Nutrition data is per serving. If you want the nutrition data for the entire recipe, just multiply by the number of servings.
     });
@@ -169,49 +172,186 @@ function showRecipe(obj){
 
 
 
-$("#search-button").on("click", function () {
-  event.preventDefault();
-  var searchValue = $("#keyword")
-    .val()
-    .trim();
-  if (searchValue !== "") {
-    searchEdamam(searchValue);
-  } else {
-    console.log(
-      "You didn't add any ingredients to search for nor did you put any search term."
-    );
-  }
-  searchValue = $("#keyword").val("");
-});
+/**
+ * This function searches for videos that are associated with a particular Freebase
+ * topic, logging their video IDs and titles to the Apps Script log. This example uses
+ * the topic ID for Google Apps Script.
+ *
+ * Note that this sample limits the results to 25. To return more results, pass
+ * additional parameters as documented here:
+ *   https://developers.google.com/youtube/v3/docs/search/list
+ */
+function searchByTopic() {
+    var mid = '/m/0gjf126';
+    var results = YouTube.Search.list('id,snippet', {
+        topicId: mid,
+        maxResults: 25
+    });
+    for (var i in results.items) {
+        var item = results.items[i];
+        Logger.log('[%s] Title: %s', item.id.videoId, item.snippet.title);
+    }
 
-$("#add-ingredient").on("click", function () {
-  event.preventDefault();
-  var searchValue = $("#ingredient")
-    .val()
-    .trim();
-  if (searchValue !== "") {
-    addIngredients(searchValue);
-  }
-  searchValue = $("#ingredient").val("");
-});
-
-$("#search-by-ingredient").on("click", function () {
-  event.preventDefault();
-  if (ingredients.length > 0) {
-    searchSpoonacular(ingredients);
-  } else {
-    console.log("array is empty");
-  }
-
-  $(document).on("click", "#results-view .result", function() {
-    id = $(this).attr("id");
-    getRecipeById(id);
-  })
-});
+    var queryURL = "https://developers.google.com/youtube/v3/code_samples/apps-script#search_by_keyword"
 
 
-/*
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        .then(function (response) {
+            clearResults();
+            var results = response.hits;
+            for (var i = 0; i < results.length; i++) {
+                var recipe = results[i].recipe;
+                var
+                    link = YouTube.url,
+                    image = YouTube.image,
+                    title = YouTube.label,
+                    div = $("<div>"),
+                    br = $("<br>"),
+                    linkTag = $("<a>"),
+                    titleTag = $("<h3>");
 
-Make buttons to be rendered when added to the ingrediens array
 
-*/
+                linkTag
+                    .attr("href", image)
+                    .text("image-link");
+
+                titleTag
+                    .text(title);
+
+                div
+                    .addClass("search-result");
+
+                div.append(br, linkTag, titleTag);
+                $("#results-view").append(div);
+
+            }
+
+
+
+        });
+
+
+    // Sample js code for search.list
+
+    // See full sample for buildApiRequest() code, which is not 
+    // specific to a particular API or API method.
+
+    buildApiRequest('GET',
+        '/youtube/v3/search', {
+            'maxResults': '25',
+            'part': 'snippet',
+            'q': 'surfing',
+            'type': ''
+        });
+
+
+
+
+        $("#search-button").on("click", function () {
+          event.preventDefault();
+          var searchValue = $("#keyword")
+            .val()
+            .trim();
+          if (searchValue !== "") {
+            searchEdamam(searchValue);
+          } else {
+            console.log(
+              "You didn't add any ingredients to search for nor did you put any search term."
+            );
+          }
+          searchValue = $("#keyword").val("");
+        });
+        
+        $("#add-ingredient").on("click", function () {
+          event.preventDefault();
+          var searchValue = $("#ingredient")
+            .val()
+            .trim();
+          if (searchValue !== "") {
+            addIngredients(searchValue);
+          }
+          searchValue = $("#ingredient").val("");
+        });
+        
+        $("#search-by-ingredient").on("click", function () {
+          event.preventDefault();
+          if (ingredients.length > 0) {
+            searchSpoonacular(ingredients);
+          } else {
+            console.log("array is empty");
+          }
+        
+          $(document).on("click", "#results-view .result", function() {
+            id = $(this).attr("id");
+            getRecipeById(id);
+          })
+        });
+        
+
+// firebase for the app muchies
+
+var config = {
+    apiKey: "AIzaSyAdaHZQH82uO9oxLw82nbPcpwnZxdD50Fg",
+    authDomain: "munchies-ff8b4.firebaseapp.com",
+    databaseURL: "https://munchies-ff8b4.firebaseio.com",
+    projectId: "munchies-ff8b4",
+    storageBucket: "",
+    messagingSenderId: "443385289339"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+var userId = "";
+var txtEmail = $("#txtEmail");
+var password = $("#password");
+var btnLogin = $("#btnLogin");
+var btnSignUp = $("#btnSignUp");
+var btnLogOut = $("#btnLogOut");
+
+
+//Add Log in Event
+$("#btnLogin").on("click", function () {
+    var email = txtEmail.val();
+    var pass = password.val();
+    var auth = firebase.auth();
+
+    //signin with e-mail and password
+    var promise = auth.signInWithEmailAndPassword(email, pass);
+    console.log(email, pass)
+    promise.catch(e => console.log('error.message'))
+
+})
+
+$("#btnSignUp").on("click", e => {
+    var email = txtEmail.val();
+    var pass = password.val();
+    var auth = firebase.auth();
+
+    var promise = auth.createUserWithEmailAndPassword(email, pass);
+    console.log(email, pass);
+
+
+    promise.catch(e => console.log(e.message));
+
+
+})
+
+$("#btnLogOut").on("click", e => {
+    firebase.auth().signOut();
+})
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+        console.log(firebaseUser);
+        userId = firebaseUser.uid;
+
+    } else {
+        console.log('not logged in')
+        userId = "";
+    }
+
+})
