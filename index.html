@@ -89,24 +89,50 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <button="btnLogin" class="btn btn-action">Sigin / Sign Up</button>
-                        <button="btnLogin" class="btn btn-action">Log out</button>
+                        <input id="txtEmail" type="email" placeholder="email">
+                        <input id="password" type="password" placeholder="Password">
+                        <br><br>
+
+                        <button id="btnLogin" class="btn btn-action">Signin</button>
+                        <button id="btnSignUp" class="btn btn-action">Sign Up</button>
+                        <button id="btnLogOut" class="btn btn-action">Log out</button>
                     </div>
-                    <div class="modal-footer">
+                    <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Log In</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
 
+
     </nav>
+
+    <div style="margin-bottom: 50px;">
+        <form id="search-form">
+            <h2>Using Spoonacular</h2>
+            <input type="text" placeholder="Add Ingredient..." id="ingredient">
+            <input type="submit" value="Add Ingredient" id="add-ingredient">
+            <input type="submit" value="Search by ingredients" id="search-by-ingredient">
+            <div id="ingredients-view"></div>
+            <br>
+            <h2>Using Edamam API</h2>
+            <input type="text" placeholder="Search by Keyword..." id="keyword">
+            <input type="submit" value="Search" id="search-button">
+        </form>
+    </div>
+
+    <div class="wrapper" id="results-view"></div>
+
+
+    </nav>
+
     <!-- Bootstrap JS-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -114,6 +140,13 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type=“text/javascript” src=“https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js“></script>
 
+
+
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
+    <!--script file-->
+    <script src="./assets/js/munchies.js"></script>
 </body>
 
 </html>
