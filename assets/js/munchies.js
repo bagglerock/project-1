@@ -234,6 +234,8 @@ function searchByTopic() {
 
         });
 
+    }
+
 /**
  * This function searches for videos that are associated with a particular Freebase
  * topic, logging their video IDs and titles to the Apps Script log. This example uses
