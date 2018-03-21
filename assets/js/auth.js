@@ -22,9 +22,12 @@ var btnLogOut = $("#btnLogOut");
 
 //Add Log in Event
 $("#btnLogin").on("click", function () {
-    var email = txtEmail.val();
-    var pass = password.val();
+    var email = txtEmail.val().trim();
+    var pass = password.val().trim();
     var auth = firebase.auth();
+
+    $("#txtEmail").val("");
+    $("#password").val("");
 
     //signin with e-mail and password
     var promise = auth.signInWithEmailAndPassword(email, pass);
@@ -38,12 +41,13 @@ $("#btnSignUp").on("click", e => {
     var pass = password.val();
     var auth = firebase.auth();
 
+    $("#txtEmail").val("");
+    $("#password").val("");
+
     var promise = auth.createUserWithEmailAndPassword(email, pass);
     console.log(email, pass);
 
-
     promise.catch(e => console.log(e.message));
-
 
 })
 
@@ -59,6 +63,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     } else {
         console.log('not logged in')
         userId = "";
-    }
+    }    
+    })
 
 })
+
