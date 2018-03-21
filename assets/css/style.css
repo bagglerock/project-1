@@ -13,3 +13,12 @@
 .recipe-image {
     width: 200px;
 }
+
+.favorite {
+    position: relative;
+    top: -10px;
+}
+
+.favorite:hover {
+    opacity: 0.5;
+}
