@@ -10,9 +10,9 @@
 
     <title>Munchies</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
 
 </head>
 
@@ -69,9 +69,9 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="keyword">
 
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" id="search-button" type="submit">Search</button>
 
                     <!-- Create an id name area for Favorite -->
                         <button="btnLogin" class="btn btn-action" id="favorite-area">Favorite</button>
@@ -121,10 +121,6 @@
             <input type="submit" value="Add Ingredient" id="add-ingredient">
             <input type="submit" value="Search by ingredients" id="search-by-ingredient">
             <div id="ingredients-view"></div>
-            <br>
-            <h2>Using Edamam API</h2>
-            <input type="text" placeholder="Search by Keyword..." id="keyword">
-            <input type="submit" value="Search" id="search-button">
         </form>
     </div>
 
@@ -135,10 +131,17 @@
 
     <!-- Bootstrap JS-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type=“text/javascript” src=“https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js“></script>
+
+    
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" 
+
 
 
 
@@ -147,6 +150,8 @@
 
     <!--script file-->
     <script src="./assets/js/munchies.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script src="./assets/js/api.js"></script>
 </body>
 
 </html>
