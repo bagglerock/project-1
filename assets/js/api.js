@@ -271,6 +271,7 @@ function showRecipeInModal(obj) {
     servingsLi = $("<li>"),
     scoreLi = $("<li>"),
     ingredientsDiv = $("<div>"),
+    ingredientsHeader = $("<h4>"),
     ingredientsUl = $("<ul>"),
     instructionsPara = $("<p>"),
     sourcePara = $("<p>"),
@@ -301,7 +302,8 @@ function showRecipeInModal(obj) {
 
   }
 
-  ingredientsDiv.append(ingredientsUl);
+  ingredientsHeader.text("Ingredients:");
+  ingredientsDiv.append(ingredientsHeader, ingredientsUl);
   mainContentDiv.append(ingredientsDiv);
 
   for( var i = 0; i < analyzedInstructions.length; i++ ){
@@ -323,6 +325,7 @@ function showRecipeInModal(obj) {
   pairingTextPara.text(pairingText);
   wineDiv.append(pairedWines, pairingTextPara);
 
+  recipeDiv.attr("id", id);
   recipeDiv.append(titleDiv, imageDiv, mainContentDiv, wineDiv);
   $("#recipe-view").append(recipeDiv);
   
@@ -375,8 +378,11 @@ $(".close").on("click", function() {
   $("#recipe").hide();
 })
 
-$("#recipe").on("clickoutside", function(event){
-  $(this).hide();
+$(document).on("click", function(event){
+  if ( event.target == document.getElementById("recipe")){
+    $("#recipe").hide();
+  }
+  
 });
 
 $(document).on("click", ".ingredient", function() {
@@ -399,7 +405,6 @@ $(document).on("click", ".ingredient", function() {
 what to fix:
 
 have to deliver a response for searching by name of a dish
-have to bring up a recipe in a modal
 if missing ingredients is empty then say you have all the ingredients
 make the autocomplete jquery thing for the search so it can find recipes more accurately
 
