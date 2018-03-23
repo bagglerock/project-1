@@ -30,6 +30,10 @@
     opacity: 0.5;
 }
 
+.close-button {
+    margin-left: 10px;
+}
+
 
 /* The Modal (background) */
 .recipe-modal {

@@ -16,14 +16,19 @@ function addIngredients(ingredient) {
 
 function showIngredients() {
   for (var i = 0; i < ingredients.length; i++) {
-    var ingredientLabel = $("<label>");
-    (closeButton = $("<button>")), (ingredientContainer = $("<div>"));
+    var 
+    ingredientContainer = $("<div>"),
+    ingredientLabel = $("<label>"),
+    closeButton = $("<i>");
 
-    ingredientLabel.addClass("ingredient").text(ingredients[i]);
+    ingredientLabel
+    .addClass("ingredient")
+    .text(ingredients[i]);
 
-    closeButton.addClass("close-button").text("X");
+    closeButton.addClass("fas fa-minus close-button");
 
     ingredientLabel.append(closeButton);
+
     ingredientContainer.append(ingredientLabel);
     $("#ingredients-view").append(ingredientContainer);
   }
@@ -385,7 +390,7 @@ $(document).on("click", function(event){
   
 });
 
-$(document).on("click", ".ingredient", function() {
+$(document).on("click", ".close-button", function() {
   event.preventDefault();
   var label = $(this)
     .contents()
