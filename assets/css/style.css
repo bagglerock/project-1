@@ -87,6 +87,7 @@
     cursor: pointer;
 }
 
-#cuisine-content, #diet-content, #intolerance-content{
-    width: 70%;
+#cuisine-button, #diet-button, #intolerance-button{
+    width: 50%;
+    margin: 2px auto 2px auto;
 }
