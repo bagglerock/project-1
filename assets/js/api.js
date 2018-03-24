@@ -225,7 +225,7 @@ function listRecipesFromKeyword(arr) {
 
     resultDiv
       .addClass("result")
-      .append(titleDiv, imageDiv);
+      .append(titleDiv, favoritesDiv, imageDiv);
     $("#results-view").append(resultDiv);
 
   }
@@ -347,7 +347,7 @@ function showRecipeInModal(obj) {
   wineDiv.append(pairedWines, pairingTextPara);
 
   recipeDiv.attr("id", id);
-  recipeDiv.append(titleDiv, imageDiv, mainContentDiv, wineDiv);
+  recipeDiv.append(favoritesDiv, titleDiv, imageDiv, mainContentDiv, wineDiv);
   $("#recipe-view").append(recipeDiv);
   
 
