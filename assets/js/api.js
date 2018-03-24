@@ -100,7 +100,9 @@ function listRecipesFromIngredients(arr) {
       favoritesDiv = $("<div>"),
       favorites = $("<i>");
 
-    favorites.addClass("fas fa-heart favorite");
+    favorites
+    .attr("id", id)
+    .addClass("fas fa-heart favorite");
     favoritesDiv.append(favorites);
 
     titleHeader.text(title);
@@ -197,6 +199,8 @@ function listRecipesFromKeyword(arr) {
     var id = recipe.id,
       title = recipe.title,
       image = recipe.image,
+      favoritesDiv = $("<div>"),
+      favorites = $("<i>"),
       resultDiv = $("<div>"),
       titleDiv = $("<div>"),
       titleHeader = $("<h3>"),
@@ -204,6 +208,11 @@ function listRecipesFromKeyword(arr) {
       imageTag = $("<img>");
 
     resultDiv.attr("id", id);
+
+    favorites
+    .attr("recipe-id", id)
+    .addClass("fas fa-heart favorite");
+    favoritesDiv.append(favorites);
 
     titleHeader.text(title);
     titleDiv.append(titleHeader);
@@ -250,6 +259,8 @@ function showRecipeInModal(obj) {
   console.log(obj);
   var recipe = obj,
     id = recipe.id,
+    favoritesDiv = $("<div>"),
+    favorites = $("<i>"),
     title = recipe.title,
     image = recipe.image,
     analyzedInstructions = recipe.analyzedInstructions[0].steps, //array
@@ -286,6 +297,11 @@ function showRecipeInModal(obj) {
 
   titleHead.text(title);
   titleDiv.append(titleHead);
+
+  favorites
+  .attr("recipe-id", id)
+  .addClass("fas fa-heart favorite");
+  favoritesDiv.append(favorites);
 
   imageTag
   .addClass("recipe-image-lg")
