@@ -25,7 +25,6 @@ var btnLogin = $("#btnLogin");
 var btnSignUp = $("#btnSignUp");
 var btnLogOut = $("#btnLogOut");
 
-
 //Add Log in Event
 $("#btnLogin").on("click", e => {
 
@@ -33,7 +32,6 @@ $("#btnLogin").on("click", e => {
 
     email = txtEmail.val().trim();
     pass = password.val().trim();
-
 
     $("#txtEmail").val("");
     $("#password").val("");
@@ -52,7 +50,6 @@ $("#btnSignUp").on("click", e => {
 
     email = txtEmail.val();
     pass = password.val();
-
 
     $("#txtEmail").val("");
     $("#password").val("");
@@ -73,6 +70,11 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
         userId = firebaseUser.uid;
+        
+        database.ref(userId).push({
+            email: email
+        })
+        var recipeId = $(this).attr("recipe-id");
 
         //On successful login
         database.ref(userId).on("child_added", function (childsnapshot) {
