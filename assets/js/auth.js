@@ -6,8 +6,8 @@ var config = {
     projectId: "munchies-ff8b4",
     storageBucket: "munchies-ff8b4.appspot.com",
     messagingSenderId: "443385289339"
-};
-firebase.initializeApp(config);
+  };
+  firebase.initializeApp(config);
 
 //reference for database and auth
 var database = firebase.database();
@@ -60,8 +60,6 @@ $("#btnSignUp").on("click", e => {
     var promise = auth.createUserWithEmailAndPassword(email, pass);
     console.log(email, pass);
 
-    saveData();
-
     promise.catch(e => console.log(e.message));
 
 })
@@ -76,18 +74,20 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         console.log(firebaseUser);
         userId = firebaseUser.uid;
 
+        //On successful login
+        database.ref(userId).on("child_added", function (childsnapshot) {
+            console.log(childsnapshot.val());
+
+        })
+
     } else {
         console.log('not logged in')
         userId = "";
     }
 })
 
-function saveData() {
-    if (userId) {
-        database.ref(userId).push({
-            email: email
-        })
-    } else {
-        console.log("You need to be logged in");
-    }
-}
+$(document).on("click", ".favorite", function () {
+    console.log("i am here");
+    var recipeID = $(this).attr("recipe-id");
+    console.log(recipeID);
+})
