@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    
+
 
 </head>
 
@@ -44,28 +44,77 @@
 
                     <a class="nav-link" href="#">Link</a>
                 </li>
-                <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Dropdown
-                    </a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#type-of-food" id="cuisine-button">
+                    Cuisine
+                </button>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#type-of-food" id="diet-button">
+                    diet
+                </button>
 
-                        <a class="dropdown-item" href="#">Cuisine</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#type-of-food" id="Intolerance-button">
+                        Intolerance
+                </button>
 
-                        <a class="dropdown-item" href="#">diet</a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item" href="#">Intolerence</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                <!-- Modal 1 -->
+                <div class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Cuisine/h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <span id="test"></span>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">diet</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                     <span id="test2"></span>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Intolerance</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <span id="test3"></span>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            <form>
+                                <button class="dropdown-item" id="area"></button>
+                            </form>
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
@@ -73,43 +122,48 @@
 
                 <button class="btn btn-outline-success my-2 my-sm-0" id="search-button" type="submit">Search</button>
 
-                    <!-- Create an id name area for Favorite -->
-                        <button="btnLogin" class="btn btn-action" id="favorite-area">Favorite</button>
-                        <button="btnLogin" class="btn btn-action" id="missing-ingrediants">Missing ingrediants</button>
-                        
+                <!-- Create an id name area for Favorite -->
+                <button="btnLogin" class="btn btn-action" id="favorite-area">Favorite</button>
+                    <button="btnLogin" class="btn btn-action" id="missing-ingrediants">Missing ingrediants</button>
+
             </form>
-        </div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Login / Sign Up
-        </button>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Login / Sign Up
+            </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input id="txtEmail" type="email" placeholder="email">
-                        <input id="password" type="password" placeholder="Password">
-                        <br><br>
-
-                        <button id="btnLogin" class="btn btn-action">Signin</button>
-                        <button id="btnSignUp" class="btn btn-action">Sign Up</button>
-                        <button id="btnLogOut" class="btn btn-action">Log out</button>
-                    </div>
-                    <!-- <div class="modal-footer">
+            <!-- Modal 2 -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </form>
+                                <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Log In</button>
                     </div> -->
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
 
     </nav>
@@ -137,21 +191,16 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type=“text/javascript” src=“https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js“></script>
 
-    
+
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" 
-
-
-
-
-    <!--Firebase-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 
-    <!--script file-->
-    <script src="./assets/js/munchies.js"></script>
+    </script>
     <script src="./assets/js/auth.js"></script>
     <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/fridge.js"></script>
 </body>
 
 </html>
