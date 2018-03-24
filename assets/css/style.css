@@ -30,6 +30,22 @@
     opacity: 0.5;
 }
 
+.modal-header {
+    margin: 0 auto;
+}
+
+.cuisine-button {
+    margin: 5px;
+}
+
+.diet-button {
+    margin: 5px;
+}
+
+.intolerence-button {
+    margin: 5px;
+}
+
 .close-button {
     margin-left: 10px;
 }
