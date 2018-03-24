@@ -6,8 +6,8 @@ var config = {
     projectId: "munchies-ff8b4",
     storageBucket: "munchies-ff8b4.appspot.com",
     messagingSenderId: "443385289339"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 //reference for database and auth
 var database = firebase.database();
@@ -44,7 +44,6 @@ $("#btnLogin").on("click", e => {
 })
 
 //New user sign up
-
 $("#btnSignUp").on("click", e => {
     event.preventDefault();
 
@@ -61,35 +60,30 @@ $("#btnSignUp").on("click", e => {
 
 })
 
+//Logout function
 $("#btnLogOut").on("click", e => {
     event.preventDefault();
     firebase.auth().signOut();
 })
 
+//When a user logs in/signup gather the unique user id.
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
         userId = firebaseUser.uid;
+
+        //listen for clicks on the 'heart' button to save the recipe in favorites
+        $(".favorite").on("click", function () {
         
-        database.ref(userId).push({
-            email: email
-        })
-        var recipeId = $(this).attr("recipe-id");
-
-        //On successful login
-        database.ref(userId).on("child_added", function (childsnapshot) {
-            console.log(childsnapshot.val());
-
+        //get the recipe id of the liked item and push it to the database
+            recipeId: this.attr(recipe - Id);
+            database.ref(userId).push(
+                recipeId
+            );
         })
 
     } else {
         console.log('not logged in')
         userId = "";
     }
-})
-
-$(document).on("click", ".favorite", function () {
-    console.log("i am here");
-    var recipeID = $(this).attr("recipe-id");
-    console.log(recipeID);
 })
