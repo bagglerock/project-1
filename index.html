@@ -1,3 +1,4 @@
+</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +35,6 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item active">
-
                     <a class="nav-link" href="#">Home
                         <span class="sr-only">(current)</span>
                     </a>
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#type-of-food" id="cuisine-button">
+                <button type="button" class="btn btn-primary col-md-3" data-toggle="recipe-modal" data-target="#type-of-food" id="cuisine-button">
                     Cuisine
                 </button>
 
@@ -53,68 +53,34 @@
                     diet
                 </button>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#type-of-food" id="Intolerance-button">
-                        Intolerance
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#type-of-food" id="intolerance-button">
+                    Intolerance
                 </button>
 
-                <!-- Modal 1 -->
-                <div class="modal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">Cuisine/h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <span id="test"></span>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                        <div class="modal" tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title">diet</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                     <span id="test2"></span>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="modal" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title">Intolerance</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <span id="test3"></span>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                            <form>
-                                <button class="dropdown-item" id="area"></button>
-                            </form>
+                <div id="cuisine-modal" class="filter-modal">
+                    <div class="modal-content">
+                        <h5 class="modal-title">Cuisine</h5>
+                        <span class="close">&times;</span>
+                        <span id="cuisine-content"></span>
+                    </div>
+                </div>
+                <div id="diet-modal" class="filter-modal">
+                    <div class="modal-content">
+                        <h5 class="modal-title">diet</h5>
+                        <span class="close">&times;</span>
+                        <span id="diet-content"></span>
+                    </div>
+                </div>
+                <div id="intolerance-modal" class="filter-modal">
+                    <div class="modal-content">
+                        <h5 class="modal-title">Intolerance</h5>
+                        <span class="close">&times;</span>
+                        <span id="intolerance-content"></span>
+                    </div>
+                </div>
+                <form>
+                    <button class="dropdown-item" id="area"></button>
+                </form>
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
@@ -127,46 +93,33 @@
                     <button="btnLogin" class="btn btn-action" id="missing-ingrediants">Missing ingrediants</button>
 
             </form>
-            </div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                Login / Sign Up
-            </button>
+        </div>
+        <!-- Button trigger modal -->
 
-            <!-- Modal 2 -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Login</button>
-                                </form>
-                                <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Log In</button>
-                    </div> -->
-                        </div>
-                    </div>
+
+        <!-- Modal 2 -->
+
+        <button type="button" id="login-button" class="btn btn-primary">Sign In</button>
+
+        <div id="login" class="login-modal">
+            <div class="login-content">
+                <span class="close">&times;</span>
+                <div class="container">
+                <input id="txtEmail" type="email" placeholder="email">
+                <input id="password" type="password" placeholder="Password"><br>
+                <br>
+                <button id="btnLogIn" type="login" placeholder="Login">Log In</button>
+                <button id="btnLogOut" type="logout" placeholder="LogOut">Log Out</button>
+                <button id="btnSingUp" type="signup" placeholder="SignUp">Sign Up</button>
                 </div>
 
 
+
+            </div>
+        </div>
+
     </nav>
+
 
     <div style="margin-bottom: 50px;">
         <form id="search-form">
@@ -184,11 +137,11 @@
     </nav>
 
     <div id="recipe" class="recipe-modal">
-            <div class="recipe-content">
-                <span class="close">&times;</span>
-                <span id="recipe-view"></span>
-            </div>
+        <div class="recipe-content">
+            <span class="close">&times;</span>
+            <span id="recipe-view"></span>
         </div>
+    </div>
 
     <!-- Bootstrap JS-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
