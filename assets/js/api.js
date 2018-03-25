@@ -120,6 +120,7 @@ function searchComplex(query, ingredients, cuisinesFilter, dietsFilter, intolera
   url +=
     "?" +
     $.param({
+      addRecipeInformation: "true",
       includeIngredients: ingredientsString, //for ingredients
       cuisines: cuisinesString, //Cuisines filter
       diet: dietsString, //The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
@@ -130,10 +131,10 @@ function searchComplex(query, ingredients, cuisinesFilter, dietsFilter, intolera
       number: "20", //The number of results to return (between 0 and 100).
       offset: "0", //The number of results to skip (between 0 and 900).
       ranking: "1",
+      fillIngredients: "true",
       //type: "", //The type of the recipes. One of the following: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
       query: query //The (natural language) recipe search query.
     });
-    console.log(url);
 
   //  Ajax call
   $.ajax({
@@ -143,6 +144,8 @@ function searchComplex(query, ingredients, cuisinesFilter, dietsFilter, intolera
       "X-Mashape-Key": apiKey
     }
   }).then(function(response) {
+    
+    response = response.results;
     listRecipesFromIngredients(response);
   });
 
@@ -185,6 +188,7 @@ function searchByIngredient(array) {
 
 function listRecipesFromIngredients(arr) {
   clearResults();
+  console.log(arr);
   for (var i = 0; i < arr.length; i++) {
     var recipe = arr[i];
     var id = recipe.id,
