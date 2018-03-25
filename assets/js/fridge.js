@@ -8,11 +8,17 @@ $("#cuisine-button").on("click", function () {
     // go through the array to make each button
     for (var i = 0; i < cuisine.length; i++) {
         var button = $("<button>");
-        button
-            // class to make the buttons look a certain way
-            .addClass("btn btn-danger cuisine-button")
-            .text(cuisine[i]);
-        //  append to the cuisine modal
+        if (cuisines.indexOf(cuisine[i]) === -1){
+            button
+                // class to make the buttons look a certain way
+                .addClass("btn btn-danger cuisine-button")
+                .text(cuisine[i]);
+        } else {
+            button
+                // class to make the buttons look a certain way
+                .addClass("btn btn-warning cuisine-button")
+                .text(cuisine[i]);  
+        }
         $("#cuisine-content").append(button);
     }
     //show the cuisine modal
@@ -28,11 +34,17 @@ $("#diet-button").on("click", function () {
     // go through the array to make each button
     for (var i = 0; i < diet.length; i++) {
         var button = $("<button>");
-        button
-            // class to make the buttons look a certain way
-            .addClass("btn btn-danger diet-button")
-            .text(diet[i]);
-        //  append to the cuisine modal
+        if (diets.indexOf(diet[i]) === -1){
+            button
+                // class to make the buttons look a certain way
+                .addClass("btn btn-danger diet-button")
+                .text(diet[i]);
+        } else {
+            button
+                // class to make the buttons look a certain way
+                .addClass("btn btn-warning diet-button")
+                .text(diet[i]);  
+        }
         $("#diet-content").append(button);
     }
     //show the diet modal
@@ -49,11 +61,17 @@ $("#intolerance-button").on("click", function () {
     // go through the array to make each button
     for (var i = 0; i < intolerance.length; i++) {
         var button = $("<button>");
-        button
-            // class to make the buttons look a certain way
-            .addClass("btn btn-danger intolerance-button")
-            .text(intolerance[i]);
-        //  append to the cuisine modal
+        if (intolerances.indexOf(intolerance[i]) === -1){
+            button
+                // class to make the buttons look a certain way
+                .addClass("btn btn-danger intolerance-button")
+                .text(intolerance[i]);
+        } else {
+            button
+                // class to make the buttons look a certain way
+                .addClass("btn btn-warning intolerance-button")
+                .text(intolerance[i]);  
+        }
         $("#intolerance-content").append(button);
     }
     //show the cuisine modal
@@ -76,3 +94,4 @@ $(".close").on("click", function () {
 $("#login-button").on("click", function() {
     $(".login-modal").show();
 })
+

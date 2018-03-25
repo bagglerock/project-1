@@ -1,8 +1,7 @@
 var ingredients = [];
-//filter arrays
 var cuisines = [];
 var intolerances = [];
-var diet = [];
+var diets = [];
 
 function clearResults() {
   $("#results-view").empty();
@@ -18,20 +17,136 @@ function showIngredients() {
   for (var i = 0; i < ingredients.length; i++) {
     var 
     ingredientContainer = $("<div>"),
-    ingredientLabel = $("<label>"),
+    ingredientLabel = $("<div>"),
     closeButton = $("<i>");
 
     ingredientLabel
     .addClass("ingredient")
     .text(ingredients[i]);
 
-    closeButton.addClass("fas fa-minus close-button");
+    closeButton.addClass("fas fa-trash close-button");
 
     ingredientLabel.append(closeButton);
 
     ingredientContainer.append(ingredientLabel);
     $("#ingredients-view").append(ingredientContainer);
   }
+}
+
+function showFilters() {
+  $("#filters-view").empty();
+
+  if (cuisines.length > 0){
+    for (var i = 0; i < cuisines.length; i++){
+      var 
+      filterContainer = $("<div>"),
+      filterLabel = $("<div>"),
+      closeButton = $("<i>");
+
+      filterLabel
+      .addClass("filter")
+      .text(cuisines[i]);
+      closeButton.addClass("fas fa-trash subtract-cuisine");
+      filterLabel.append(closeButton);
+      filterContainer.append(filterLabel);
+      $("#filters-view").append(filterContainer);
+    }
+  } 
+  if (diets.length > 0){
+    for (var i = 0; i < diets.length; i++){
+      var 
+      filterContainer = $("<div>"),
+      filterLabel = $("<label>"),
+      closeButton = $("<i>");
+
+      filterLabel
+      .addClass("filter")
+      .text(diets[i]);
+      closeButton.addClass("fas fa-trash subtract-diet");
+      filterLabel.append(closeButton);
+      filterContainer.append(filterLabel);
+      $("#filters-view").append(filterContainer);
+    }
+  }
+  if (intolerances.length > 0){
+    for (var i = 0; i < intolerances.length; i++){
+      var 
+      filterContainer = $("<div>"),
+      filterLabel = $("<label>"),
+      closeButton = $("<i>");
+
+      filterLabel
+      .addClass("filter")
+      .text(intolerances[i]);
+      closeButton.addClass("fas fa-trash subtract-intolerance");
+      filterLabel.append(closeButton);
+      filterContainer.append(filterLabel);
+      $("#filters-view").append(filterContainer);
+    }
+  }
+}
+
+function searchComplex(query, ingredients, cuisinesFilter, dietsFilter, intolerancesFilter){
+  var apiKey = "NaJ8IatR4umshJBKw1RZRU7m6EnQp1QfWPajsnjxYr5FbYb8Gv";
+  var url =
+    "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex";
+  var cuisinesString = "";
+  var dietsString = "";
+  var intolerancesString = "";
+  var ingredientsString = "";
+
+  if (ingredients.length > 0){
+    for (var i = 0; i < ingredients.length; i++) {
+      ingredientsString += ingredients[i] + ",";
+    }
+  }
+
+  if (cuisines.length > 0){
+    for (var i = 0; i < cuisines.length; i++) {
+      cuisinesString += cuisines[i] + ",";
+    }
+  }
+  if (diets.length > 0){
+    for (var i = 0; i < diets.length; i++) {
+      dietsString += diets[i] + ",";
+    }
+  }
+  if (intolerances.length > 0){
+    for (var i = 0; i < intolerances.length; i++) {
+      intolerancesString += intolerances[i] + ",";
+    }
+  }
+
+  url +=
+    "?" +
+    $.param({
+      includeIngredients: ingredientsString, //for ingredients
+      cuisines: cuisinesString, //Cuisines filter
+      diet: dietsString, //The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
+      //excludeIngredients: "", //An comma-separated list of ingredients or ingredient types that must not be contained in the recipes.
+      //instructionsRequired: "true", // Whether the recipes must have instructions.
+      intolerances: intolerancesString, //A comma-separated list of intolerances. All found recipes must not have ingredients that could cause problems for people with one of the given tolerances. Possible values are: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
+      limitLicense: "false", //Whether the recipes should have an open license that allows for displaying with proper attribution.
+      number: "20", //The number of results to return (between 0 and 100).
+      offset: "0", //The number of results to skip (between 0 and 900).
+      ranking: "1",
+      //type: "", //The type of the recipes. One of the following: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
+      query: query //The (natural language) recipe search query.
+    });
+    console.log(url);
+
+  //  Ajax call
+  $.ajax({
+    url: url,
+    method: "GET",
+    headers: {
+      "X-Mashape-Key": apiKey
+    }
+  }).then(function(response) {
+    listRecipesFromIngredients(response);
+  });
+
+
 }
 
 //  Search by ingredient
@@ -160,23 +275,44 @@ function listRecipesFromIngredients(arr) {
   }
 }
 
-function searchByKeyword(keyword) {
+function searchByKeyword(query, cuisinesFilter, dietsFilter, intolerancesFilter) {
   var apiKey = "NaJ8IatR4umshJBKw1RZRU7m6EnQp1QfWPajsnjxYr5FbYb8Gv";
   var url =
     "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
+  var cuisinesString = "";
+  var dietsString = "";
+  var intolerancesString = "";
+
+  if (cuisines.length > 0){
+    for (var i = 0; i < cuisines.length; i++) {
+      cuisinesString += cuisines[i] + ",";
+    }
+  }
+  if (diets.length > 0){
+    for (var i = 0; i < diets.length; i++) {
+      dietsString += diets[i] + ",";
+    }
+  }
+  if (intolerances.length > 0){
+    for (var i = 0; i < intolerances.length; i++) {
+      intolerancesString += intolerances[i] + ",";
+    }
+  }
+
   var queryString = "";
   url +=
     "?" +
     $.param({
-      //diet: "", //The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
+      cuisines: cuisinesString, //Cuisines filter
+      diet: dietsString, //The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
       //excludeIngredients: "", //An comma-separated list of ingredients or ingredient types that must not be contained in the recipes.
       //instructionsRequired: "true", // Whether the recipes must have instructions.
-      //intolerances: "", //A comma-separated list of intolerances. All found recipes must not have ingredients that could cause problems for people with one of the given tolerances. Possible values are: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
+      intolerances: intolerancesString, //A comma-separated list of intolerances. All found recipes must not have ingredients that could cause problems for people with one of the given tolerances. Possible values are: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
       limitLicense: "false", //Whether the recipes should have an open license that allows for displaying with proper attribution.
       number: "20", //The number of results to return (between 0 and 100).
       //offset: "", //The number of results to skip (between 0 and 900).
       //type: "", //The type of the recipes. One of the following: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
-      query: keyword //The (natural language) recipe search query.
+      query: query //The (natural language) recipe search query.
     });
 
   //  Ajax call
@@ -353,41 +489,36 @@ function showRecipeInModal(obj) {
 
 }
 
+//general search function
 $("#search-button").on("click", function() {
   event.preventDefault();
-  var searchValue = $("#keyword")
-    .val()
-    .trim();
-  if (searchValue !== "") {
-    searchByKeyword(searchValue);
+  var query = $("#query").val().trim();
+  if (ingredients.length > 0){
+    if ((cuisines.length > 0) || (diets.length > 0) || (intolerances.length > 0)){
+      searchComplex(query, cuisines, diets, intolerances);
+    } else {
+      searchByIngredient(ingredients);
+    }
   } else {
-    console.log(
-      "You didn't add any ingredients to search for nor did you put any search term."
-    );
+    searchByKeyword(query);
   }
-  searchValue = $("#keyword").val("");
-});
+  $("#query").val("");
 
+})
+
+//  add ingredient button - this will need a check on the value and get prefilled
 $("#add-ingredient").on("click", function() {
   event.preventDefault();
-  var searchValue = $("#ingredient")
+  var searchValue = $("#query")
     .val()
     .trim();
   if (searchValue !== "") {
     addIngredients(searchValue);
   }
-  searchValue = $("#ingredient").val("");
+  searchValue = $("#query").val("");
 });
 
-$("#search-by-ingredient").on("click", function() {
-  event.preventDefault();
-  if (ingredients.length > 0) {
-    searchByIngredient(ingredients);
-  } else {
-    console.log("array is empty");
-  }
-});
-
+//gets the recipe when the div is clicked and shows it in a modal
 $(document).on("click", "#results-view .result", function() {
   id = $(this).attr("id");
   getRecipeById(id);
@@ -395,10 +526,13 @@ $(document).on("click", "#results-view .result", function() {
   $(".recipe-modal").css("display", "block");
 });
 
+//closes the recipe modal if the x is clicked
 $(".close").on("click", function() {
   $("#recipe").hide();
+  showFilters();
 })
 
+//closes the recipe modal if anything outside the modal is clicked
 $(document).on("click", function(event){
   if ( event.target == document.getElementById("recipe")){
     $("#recipe").hide();
@@ -406,16 +540,107 @@ $(document).on("click", function(event){
   
 });
 
+//deletes ingredients
 $(document).on("click", ".close-button", function() {
   event.preventDefault();
-  var label = $(this)
-    .contents()
-    .get(0).nodeValue; //gets only the parent, not the children
+  var label = $(this).parent().text();
   var index = ingredients.indexOf(label);
-
   ingredients.splice(index, 1);
   $("#ingredients-view").empty();
   showIngredients();
+});
+
+// adds cuisine filters
+$(document).on("click", ".cuisine-button", function(){
+  var value = $(this).text();
+  if ($(this).hasClass("btn-danger")){
+    $(this).removeClass("btn-danger").addClass("btn-warning");
+    cuisines.push(value);
+  } else {
+    $(this).removeClass("btn-warning").addClass("btn-danger");
+    var filterIndex = cuisines.indexOf(value);
+    cuisines.splice(filterIndex, 1);
+  }
+
+})
+
+// adds diet filters
+$(document).on("click", ".diet-button", function(){
+  var value = $(this).text();
+  if ($(this).hasClass("btn-danger")){
+    $(this).removeClass("btn-danger").addClass("btn-warning");
+    diets.push(value);
+  } else {
+    $(this).removeClass("btn-warning").addClass("btn-danger");
+    var filterIndex = diets.indexOf(value);
+    diets.splice(filterIndex, 1);
+  }
+
+})
+
+//  adds intolorance filters
+$(document).on("click", ".intolerance-button", function(){
+  var value = $(this).text();
+  if ($(this).hasClass("btn-danger")){
+    $(this).removeClass("btn-danger").addClass("btn-warning");
+    intolerances.push(value);
+  } else {
+    $(this).removeClass("btn-warning").addClass("btn-danger");
+    var filterIndex = intolerances.indexOf(value);
+    intolerances.splice(filterIndex, 1);
+  }
+
+})
+
+$(document).on("click", function(event){
+  if ( event.target == document.getElementById("cuisine-modal")){
+    $("#cuisine-modal").hide();
+    showFilters();
+  }
+  
+});
+
+$(document).on("click", function(event){
+  if ( event.target == document.getElementById("diet-modal")){
+    $("#diet-modal").hide();
+    showFilters();
+  }
+  
+});
+
+$(document).on("click", function(event){
+  if ( event.target == document.getElementById("intolerance-modal")){
+    $("#intolerance-modal").hide();
+    showFilters();
+  }
+  
+});
+
+$(document).on("click", ".subtract-cuisine", function() {
+  event.preventDefault();
+  var label = $(this).parent().text();
+  var index = cuisines.indexOf(label);
+  cuisines.splice(index, 1);
+  $("#filters-view").empty();
+  showFilters();
+});
+
+$(document).on("click", ".subtract-diet", function() {
+  event.preventDefault();
+  var label = $(this).parent().text();
+  var index = diets.indexOf(label);
+  diets.splice(index, 1);
+  $("#filters-view").empty();
+  showFilters();
+});
+
+$(document).on("click", ".subtract-intolerance", function() {
+  event.preventDefault();
+  var label = $(this).parent().text();
+  var index = intolerances.indexOf(label);
+  intolerances.splice(index, 1);
+  $("#filters-view").empty();
+  showFilters();
 });
 
 
@@ -424,6 +649,11 @@ $(document).on("click", ".close-button", function() {
 /*
 
 what to fix:
+
+
+get recipe information bulk = used multiple ids
+
+
 
 have to deliver a response for searching by name of a dish
 if missing ingredients is empty then say you have all the ingredients
