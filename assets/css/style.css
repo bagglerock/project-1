@@ -46,7 +46,8 @@
     margin: 5px;
 }
 
-.close-button, .subtract-filter {
+.close-button,
+.subtract-filter {
     margin-left: 10px;
 }
 
@@ -106,14 +107,14 @@
 #diet-button,
 #intolerance-button {
     width: 50%;
-    margin: 2px auto 2px auto;
+    margin: 1px;
 }
 
-.ingredient, .filter {
+.ingredient,
+.filter {
     margin: 20px;
     float: left;
 }
-
 
 .fa-trash {
     margin-left: 10px;
@@ -140,12 +141,34 @@
     border-bottom-width: -10px
 }
 
+.navbar-brand {
+    font-family:'Chicle', cursive;
+    font-size: 32px;
+    background-color: slateblue;
+    border: 2px solid rgb(28, 51, 102);
+    width: 110px;
+}
+
 .login-content {
     border-spacing: 10px;
+    width: 500px;
     background-color: steelblue;
 }
 
-.container {
-    width: -20px;
-    margin: auto;
+#btnLogOut {
+    display: none;
+}
+
+.btn-favorite {
+    widows: 100px;
+    height: auto;
+    display: inline-block;
+    margin: 10px;
+}
+
+.nav-link {
+    widows: 85px;
+    height: auto;
+    display: inline-block;
+    margin: 0px;
 }

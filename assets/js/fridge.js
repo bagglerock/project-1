@@ -94,4 +94,3 @@ $(".close").on("click", function () {
 $("#login-button").on("click", function() {
     $(".login-modal").show();
 })
-

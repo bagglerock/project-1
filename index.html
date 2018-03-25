@@ -8,8 +8,9 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Munchies</title>
+    <title>Chef's Den</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Chicle" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -20,7 +21,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand" href="#">Munchies</a>
+        <a class="navbar-brand" href="#">Chef's Den</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -33,13 +34,9 @@
 
             <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
 
-                </li>
-                <button type="button" class="btn btn-primary col-md-3" class="delicious" data-toggle="recipe-modal" data-target="#type-of-food" id="cuisine-button">
+                <button type="button" class="btn btn-primary col-md-3" class="delicious" data-toggle="recipe-modal" data-target="#type-of-food"
+                    id="cuisine-button">
                     Cuisine
                 </button>
 
@@ -79,16 +76,19 @@
             <form class="form-inline my-2 my-lg-0">
 
                 <!-- Create an id name area for Favorite -->
-                <form action="favorite.html">
-                    <input type="submit" value="Favorite">
-                </form>
+                <li class= "nav-item active">
+                    <a class="nav-link" type="button" href="file:///Users/abher99/Desktop/project-1/index.html#"> Home
+                        <span class="sr-only">(current)</span>
+                    </a>
 
-                <button="btnLogin" class="btn btn-action" id="missing-ingrediants">Missing ingrediants</button>
+                </li>
+
+                <div>
+                    <a class="btn-favorite" type="button" href="file:///Users/abher99/Desktop/project-1/.vscode/favorite.html">Favorite</a>
+                </div>
 
             </form>
         </div>
-        <!-- Button trigger modal -->
-
 
         <!-- Modal 2 -->
 
@@ -102,9 +102,9 @@
                     <input id="password" type="password" placeholder="Password">
                     <br>
                     <br>
-                    <button id="btnLogIn" type="login" placeholder="Login">Log In</button>
-                    <button id="btnLogOut" type="logout" placeholder="LogOut">Log Out</button>
-                    <button id="btnSignUp" type="signup" placeholder="SignUp">Sign Up</button>
+                    <button class="btn btn-warning" id="btnLogIn" type="login" placeholder="Login">Log In</button>
+                    <button class="btn btn-secondary" id="btnLogOut" type="logout" placeholder="LogOut">Log Out</button>
+                    <button class="btn btn-warning" id="btnSignUp" type="signup" placeholder="SignUp">Sign Up</button>
                 </div>
             </div>
         </div>
