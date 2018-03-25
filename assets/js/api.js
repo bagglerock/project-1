@@ -489,43 +489,43 @@ function showRecipeInModal(obj) {
   recipeDiv.attr("id", id);
   recipeDiv.append(favoritesDiv, titleDiv, imageDiv, mainContentDiv, wineDiv);
   $("#recipe-view").append(recipeDiv);
+
+  pairBeer(ingredients[0].name);
   
 
 }
 
-/*function bulkSearch(arr){
-  var apiKey = "NaJ8IatR4umshJBKw1RZRU7m6EnQp1QfWPajsnjxYr5FbYb8Gv";
-  var url =
-    "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search";
-  var cuisinesString = "";
-  var queryString = "";
+function pairBeer(food) {
+  var food = food.split(" ");
+  var url = "https://api.punkapi.com/v2/beers";
   url +=
-    "?" +
+    "?" + 
     $.param({
-      cuisines: cuisinesString, //Cuisines filter
-      diet: dietsString, //The diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian.
-      //excludeIngredients: "", //An comma-separated list of ingredients or ingredient types that must not be contained in the recipes.
-      //instructionsRequired: "true", // Whether the recipes must have instructions.
-      intolerances: intolerancesString, //A comma-separated list of intolerances. All found recipes must not have ingredients that could cause problems for people with one of the given tolerances. Possible values are: dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat.
-      limitLicense: "false", //Whether the recipes should have an open license that allows for displaying with proper attribution.
-      number: "20", //The number of results to return (between 0 and 100).
-      //offset: "", //The number of results to skip (between 0 and 900).
-      //type: "", //The type of the recipes. One of the following: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
-      query: query //The (natural language) recipe search query.
+      food: food[0] //Include nutrition data to the recipe information. Nutrition data is per serving. If you want the nutrition data for the entire recipe, just multiply by the number of servings.
     });
 
-  //  Ajax call
+    console.log(url);
+
   $.ajax({
     url: url,
-    method: "GET",
-    headers: {
-      "X-Mashape-Key": apiKey
-    }
+    method: "GET"
   }).then(function(response) {
-    listRecipesFromKeyword(response);
-  });
+    var beerDiv = $("<div>");
+    var header = $("<h4>");
+    header.text("Here are some beers that could go with your meal:");
+    beerDiv.append(header);
 
-}*/
+    for (var i = 0; i < response.length; i++ ){
+      var beerName = $("<p>");
+      var name = response[i].name;
+      beerName.text(name);
+      beerDiv.append(beerName);
+    }
+
+    $("#recipe-view").append(beerDiv);
+  });
+}
+
 
 //general search function
 $("#search-button").on("click", function() {
