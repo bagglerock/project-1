@@ -46,7 +46,7 @@
     margin: 5px;
 }
 
-.close-button {
+.close-button, .subtract-filter {
     margin-left: 10px;
 }
 
@@ -90,4 +90,18 @@
 #cuisine-button, #diet-button, #intolerance-button{
     width: 50%;
     margin: 2px auto 2px auto;
+}
+
+.ingredient, .filter {
+    margin: 20px;
+    float: left;
+}
+
+
+.fa-trash {
+    margin-left: 10px;
+}
+
+#results-view {
+    clear: both;
 }

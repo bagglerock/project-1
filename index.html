@@ -83,10 +83,6 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="keyword">
-
-                <button class="btn btn-outline-success my-2 my-sm-0" id="search-button" type="submit">Search</button>
-
                 <!-- Create an id name area for Favorite -->
                 <button="btnLogin" class="btn btn-action" id="favorite-area">Favorite</button>
                     <button="btnLogin" class="btn btn-action" id="missing-ingrediants">Missing ingrediants</button>
@@ -122,11 +118,12 @@
 
     <div style="margin-bottom: 50px;">
         <form id="search-form">
-            <h2>Using Spoonacular</h2>
-            <input type="text" placeholder="Add Ingredient..." id="ingredient">
+            <h2>Search</h2>
+            <input type="text" placeholder="Add Ingredient or search for a recipe" id="query" size="50">
             <input type="submit" value="Add Ingredient" id="add-ingredient">
-            <input type="submit" value="Search by ingredients" id="search-by-ingredient">
+            <input type="submit" value="Search" id="search-button">
             <div id="ingredients-view"></div>
+            <div id="filters-view"></div>
         </form>
     </div>
 
