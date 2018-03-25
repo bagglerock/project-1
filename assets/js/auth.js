@@ -26,12 +26,12 @@ var btnSignUp = $("#btnSignUp");
 var btnLogOut = $("#btnLogOut");
 
 //Add Log in Event
-$("#btnLogin").on("click", e => {
+$("#btnLogIn").on("click", e => {
 
     event.preventDefault();
 
-    email = txtEmail.val().trim();
-    pass = password.val().trim();
+    email = txtEmail.val();
+    pass = password.val();
 
     $("#txtEmail").val("");
     $("#password").val("");
@@ -76,42 +76,44 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $(".favorite").on("click", function () {
 
             //get the recipe id of the liked item and push it to the database
-            recipeId: this.attr(recipe-Id);
+            //recipeId = this.attr(recipe_Id);
+            console.log(this.attr(recipe_Id));
             database.ref(userId).push(
                 recipeId
             );
+        })
+        //Listen for fav being added to the database.  
+        database.ref(userId).on("child_added", function (childSnapshot) {
+
+            //take the snapshot and write to the DOM
+            console.log(childSnapshot.val());
         })
     } else {
         console.log('not logged in')
         userId = "";
     }
+
+    function getRecipeById(id) {
+        //  take in the id and return the recipe
+        var apiKey = "NaJ8IatR4umshJBKw1RZRU7m6EnQp1QfWPajsnjxYr5FbYb8Gv";
+        var url =
+            "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
+        url +=
+            id +
+            "/information?" +
+            $.param({
+                includeNutrition: "true" //Include nutrition data to the recipe information. Nutrition data is per serving. If you want the nutrition data for the entire recipe, just multiply by the number of servings.
+            });
+
+        $.ajax({
+            url: url,
+            method: "GET",
+            headers: {
+                "X-Mashape-Key": apiKey
+            }
+        }).then(function (response) {
+            console.log(response);
+        });
+    }
 })
 
-//Listen for fav being added to the database.  
-database.ref(userId).on("child_added", function(childSnapshot){
-    //take the snapshot and write to the DOM
-    console.log(childSnapshot.val());
-
-function getRecipeById(id) {
-    //  take in the id and return the recipe
-    var apiKey = "NaJ8IatR4umshJBKw1RZRU7m6EnQp1QfWPajsnjxYr5FbYb8Gv";
-    var url =
-      "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/";
-    url +=
-      id +
-      "/information?" +
-      $.param({
-        includeNutrition: "true" //Include nutrition data to the recipe information. Nutrition data is per serving. If you want the nutrition data for the entire recipe, just multiply by the number of servings.
-      });
-  
-    $.ajax({
-      url: url,
-      method: "GET",
-      headers: {
-        "X-Mashape-Key": apiKey
-      }
-    }).then(function(response) {
-      showRecipeInModal(response);
-    });
-  }
-})

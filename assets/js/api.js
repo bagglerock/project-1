@@ -350,7 +350,7 @@ function listRecipesFromKeyword(arr) {
     resultDiv.attr("id", id);
 
     favorites
-    .attr("recipe-id", id)
+    .attr("recipe_id", id)
     .addClass("fas fa-heart favorite");
     favoritesDiv.append(favorites);
 
@@ -439,7 +439,7 @@ function showRecipeInModal(obj) {
   titleDiv.append(titleHead);
 
   favorites
-  .attr("recipe-id", id)
+  .attr("recipe_id", id)
   .addClass("fas fa-heart favorite");
   favoritesDiv.append(favorites);
 
