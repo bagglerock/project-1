@@ -70,30 +70,29 @@ $("#btnLogOut").on("click", e => {
 //When a user logs in/signup gather the unique user id.
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-        console.log(firebaseUser);
         userId = firebaseUser.uid;
-
-        //listen for clicks on the 'heart' button to save the recipe in favorites
-        $(document).on("click", ".favorite", function () {
-
-            //get the recipe id of the liked item and push it to the database
-            recipeId = $(this).attr("recipe-id");
-            console.log($(this).attr("recipe-id"));
-            database.ref(userId).push(
-                recipeId
-            );
-        })
         //Listen for fav being added to the database.  
         database.ref(userId).on("child_added", function (childSnapshot) {
 
-            //take the snapshot and write to the DOM
-            console.log(childSnapshot.val());
-            bulkIdSearch(favoritesArray);
+        //take the snapshot and write to the DOM
+        bulkIdSearch(favoritesArray);
         })
     } else {
         console.log('not logged in')
         userId = "";
     }
+})
+
+//listen for clicks on the 'heart' button to save the recipe in favorites
+$(document).on("click", ".favorite", function () {
+
+    event.preventDefault();   
+    //get the recipe id of the liked item and push it to the database
+    recipeId = $(this).attr("recipe-id");
+    console.log($(this).attr("recipe-id"));
+    database.ref(userId).push(
+        recipeId
+    );
 })
 
 //api call to populate the recipes that are saved in database
