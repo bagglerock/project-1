@@ -156,7 +156,7 @@ function displayFavorites(arrTest) {
         titleDiv.append(header);
 
         var image = arrTest[i].image;
-        imageTag.attr("src", image).attr("alt", title);
+        imageTag.attr("src", image).attr("alt", title).addClass("recipe-image");
         imgDiv.append(imageTag);
 
         favDiv.attr("id", arrTest[i].id)
@@ -168,7 +168,7 @@ function displayFavorites(arrTest) {
 
             console.log(1);
 
-        $("#results-view").append(favDiv);
+        $("#favorites-view").append(favDiv);
     }
 
 }
