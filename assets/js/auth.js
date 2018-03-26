@@ -74,8 +74,14 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         email = firebaseUser.email;
         //Listen for fav being added to the database.  
         database.ref(userId).on("child_added", function (childSnapshot) {
-
+            console.log(childSnapshot.val());
             //take the snapshot and write to the DOM
+            var arrTest=[];
+            arrTest.push(childSnapshot.val());            
+            childSnapshot.forEach(function(value) {
+                arrTest.push(value);
+            });
+            console.log(arrTest);
             bulkIdSearch(favoritesArray);
         })
     } else {

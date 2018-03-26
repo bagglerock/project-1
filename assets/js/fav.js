@@ -1,6 +1,10 @@
+
+$(document).ready(function(){
+
+    var favoritesArray = [];
 //function to populate the items in database to the fav page
 function displayFavorites(arr) {
-
+    console.log(arr)
     for (var i = 0; i < arr.length; i++) {
         var favDiv = $("<div>");
         var titleDiv = $("<div>");
@@ -27,4 +31,5 @@ function displayFavorites(arr) {
     }
 
 }
+})
 displayFavorites(arr);
