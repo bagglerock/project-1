@@ -71,11 +71,12 @@ $("#btnLogOut").on("click", e => {
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         userId = firebaseUser.uid;
+        email = firebaseUser.email;
         //Listen for fav being added to the database.  
         database.ref(userId).on("child_added", function (childSnapshot) {
 
-        //take the snapshot and write to the DOM
-        bulkIdSearch(favoritesArray);
+            //take the snapshot and write to the DOM
+            bulkIdSearch(favoritesArray);
         })
     } else {
         console.log('not logged in')
@@ -86,7 +87,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 //listen for clicks on the 'heart' button to save the recipe in favorites
 $(document).on("click", ".favorite", function () {
 
-    event.preventDefault();   
+    event.preventDefault();
     //get the recipe id of the liked item and push it to the database
     recipeId = $(this).attr("recipe-id");
     console.log($(this).attr("recipe-id"));
@@ -126,37 +127,6 @@ function bulkIdSearch(arr) {
             "X-Mashape-Key": apiKey
         }
     }).then(function (response) {
-        console.log(response);
-        displayFavorites(arr);
+        console.log(response);        
     });
-}
-
-//function to populate the items in database to the fav page
-function displayFavorites(arr) {
-
-    for (var i = 0; i < arr.length; i++) {
-        var favDiv = $("<div>");
-        var titleDiv = $("<div>");
-        var header = $("<h4>");
-        var imgDiv = $("<div>")
-        var imageTag = $("<img>");
-
-        var title = arr[i].title;
-        header.text(title);
-        titleDiv.append(header);
-
-        var image = arr[i].image;
-        imageTag.attr("src", image).attr("alt", title);
-
-        favDiv.attr("id", id)
-            .addClass(result);
-
-        favDiv.append(
-            titleDiv,
-            imageDiv
-        )
-
-        $("#results-view").append(favDiv);
-    }
-
 }
