@@ -1,3 +1,7 @@
+body {
+    background: url('../images/nafinia-putra-59655-unsplash.jpg');
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -134,15 +138,14 @@
 .navbar-navbar,
 .navbar-expand-lg,
 .navbar-lightbg-light {
-    background-color: red;
     margin: auto;
     border: 2px solid skyblue;
     bottom: -1px;
-    border-bottom-width: -10px
+    border-bottom-width: -10px;
 }
 
 .navbar-brand {
-    font-family:'Chicle', cursive;
+    font-family: 'Chicle', cursive;
     font-size: 32px;
     background-color: slateblue;
     border: 2px solid rgb(28, 51, 102);
@@ -159,16 +162,27 @@
     display: none;
 }
 
-.btn-favorite {
+/*.btn-favorite {
     widows: 100px;
     height: auto;
     display: inline-block;
     margin: 10px;
 }
+*/
 
-.nav-link {
-    widows: 85px;
+.btn-favorite {
     height: auto;
     display: inline-block;
-    margin: 0px;
+    margin: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.nav-item {
+    padding-left: 5px;
+    padding-right: 4px;
+}
+
+#login-button {
+    color: #007bff;
 }
