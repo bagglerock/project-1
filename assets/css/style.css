@@ -214,3 +214,7 @@ body {
     float: right;
 }
 
+#favorites-view {
+    padding-top: 50px;
+}
+

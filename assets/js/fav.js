@@ -27,7 +27,7 @@ function displayFavorites(arr) {
             imageDiv
         )
 
-        $("#results-view").append(favDiv);
+        $("#favorites-view").append(favDiv);
     }
 
 }
