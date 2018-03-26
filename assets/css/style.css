@@ -1,5 +1,6 @@
 body {
     background: url('../images/nafinia-putra-59655-unsplash.jpg');
+    background-repeat: no-repeat;
 }
 
 .wrapper {
@@ -118,6 +119,11 @@ body {
 .filter {
     margin: 20px;
     float: left;
+    background-color:white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+
 }
 
 .fa-trash {
@@ -186,3 +192,25 @@ body {
 #login-button {
     color: #007bff;
 }
+
+#query {
+    font-size: 30px;
+}
+
+#query[type=text] {
+    background-color: palegoldenrod;
+}
+
+#add-ingredient, #search-button {
+    font-size: 30px;
+    margin: 20px 40px;
+}
+
+#main {
+    padding-top: 150px;
+}
+
+#fav-nav {
+    float: right;
+}
+
