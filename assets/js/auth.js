@@ -73,10 +73,17 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         userId = firebaseUser.uid;
         email = firebaseUser.email;
         //Listen for fav being added to the database.  
-        database.ref(userId).on("child_added", function (childSnapshot) {
-
+        database.ref(userId).on("value", function (childSnapshot) {
+            console.log(childSnapshot.val()); 
+            var snapshotArr = childSnapshot.val();
+            console.log(typeof snapshotArr);
             //take the snapshot and write to the DOM
-            bulkIdSearch(favoritesArray);
+            var arrTest=[];
+            for (var key in snapshotArr) {
+                arrTest.push(snapshotArr[key])
+            }
+            console.log(arrTest);
+            bulkIdSearch(arrTest);
         })
     } else {
         console.log('not logged in')
@@ -127,6 +134,41 @@ function bulkIdSearch(arr) {
             "X-Mashape-Key": apiKey
         }
     }).then(function (response) {
-        console.log(response);        
+        console.log(response);   
+        displayFavorites(response);     
     });
+}
+
+//function to populate the items in database to the fav page
+function displayFavorites(arrTest) {
+    console.log(arrTest)
+    console.log(arrTest.length);
+    for (var i = 0; i < arrTest.length; i++) {
+        console.log('hi')
+        var favDiv = $("<div>");
+        var titleDiv = $("<div>");
+        var header = $("<h4>");
+        var imgDiv = $("<div>")
+        var imageTag = $("<img>");
+
+        var title = arrTest[i].title;
+        header.text(title);
+        titleDiv.append(header);
+
+        var image = arrTest[i].image;
+        imageTag.attr("src", image).attr("alt", title);
+        imgDiv.append(imageTag);
+
+        favDiv.attr("id", arrTest[i].id)
+            .addClass("result");
+
+        favDiv.append(
+            titleDiv,
+            imgDiv);
+
+            console.log(1);
+
+        $("#results-view").append(favDiv);
+    }
+
 }
